@@ -1,7 +1,7 @@
 import { Bell, CircleHelp, Settings, Wallet } from "lucide-react";
 import Link from "next/link";
 import { Input } from "./ui/input";
-import Logo  from "../../public/logo.svg";
+import Logo from "../../public/logo.svg";
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -21,7 +21,7 @@ const navbarLinks = [
   {
     name: "Enquiries",
     href: "#",
-    icon: <CircleHelp />
+    icon: <CircleHelp />,
   },
   {
     name: "Settings",
@@ -53,10 +53,13 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
         <a href="#" className="mr-2">
           <img src={Logo.src} className="w-12 h-12" />
         </a>
-        <Input placeholder="Search...." className="w-full hidden md:block" />
+        <Input
+          placeholder="Search...."
+          className="w-full h-10 hidden md:block"
+        />
       </div>
       <ul className="flex justify-between gap-8">
-        {navbarLinks.map((link) => (  
+        {navbarLinks.map((link) => (
           <li key={link.name}>
             <Link href={link.href} legacyBehavior>
               <a className="flex flex-col items-center space-x-2 text-xs  text-gray-500 hover:text-blue-500">
