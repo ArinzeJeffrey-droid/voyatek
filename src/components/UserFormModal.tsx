@@ -30,6 +30,7 @@ export default function UserFormModal({
   addUser,
   updateUser,
 }: UserFormModalProps) {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [user, setUser] = useState<User>({
     id: generateUserId(),
     name: "",
@@ -61,26 +62,31 @@ export default function UserFormModal({
 
       <form onSubmit={handleSubmit} className="flex flex-col">
         <div className="grid w-full items-center gap-1.5 mb-4">
-          <Label htmlFor="email">Email Address</Label>
+          <Label className="text-sm" htmlFor="email">Email Address</Label>
           <Input
             id="email"
             type="email"
+            placeholder="New User's Email Address"
+            required
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
         </div>
         <div className="grid w-full items-center gap-1.5 mb-4">
-          <Label htmlFor="name">Full name</Label>
+          <Label className="text-sm" htmlFor="name">Full name</Label>
           <Input
             id="name"
             type="text"
+            placeholder="New User's Full Name"
+            required
             value={user.name}
             onChange={(e) => setUser({ ...user, name: e.target.value })}
           />
         </div>
         <div className="grid w-full items-center gap-1.5 mb-4">
-          <Label htmlFor="role">Role</Label>
+          <Label className="text-sm" htmlFor="role">Role</Label>
           <Select
+            required
             value={user.role}
             onValueChange={(e) => setUser({ ...user, role: e })}
           >
@@ -91,19 +97,29 @@ export default function UserFormModal({
               <SelectGroup>
                 <SelectItem value="Administrator">Administrator</SelectItem>
                 <SelectItem value="Sales Manager">Sales Manager</SelectItem>
-                <SelectItem value="Sales Representative">Sales Representative</SelectItem>
+                <SelectItem value="Sales Representative">
+                  Sales Representative
+                </SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
         <div className="grid w-full items-center gap-1.5 mb-4">
-          <Label htmlFor="role">Password</Label>
+          <Label className="text-sm" htmlFor="role">Password</Label>
           <Input
             id="password"
-            type="password"
+            placeholder="Create a Password New User"
+            required
+            type={isPasswordVisible ? "text" : "password"}
             value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
+          <span
+            className="text-xs cursor-pointer underline text-right"
+            onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+          >
+            {isPasswordVisible ? "Hide password" : "Show password"}
+          </span>
         </div>
         <Button>{title}</Button>
       </form>

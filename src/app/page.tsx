@@ -20,6 +20,7 @@ import React, { useState } from "react";
 export default function Home() {
   const { toast } = useToast();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const [selectedUser, setSelectedUser] = useState<User>();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -96,6 +97,10 @@ export default function Home() {
     });
   };
 
+  const filteredUsers = data?.filter((user: User) => {
+    return user.name.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
     <main className="flex min-h-screen flex-col">
       <div className="text-gray-400 text-sm mt-5 mb-5">
@@ -109,7 +114,10 @@ export default function Home() {
 
       <div className="p-4 flex justify-between items-center bg-white">
         <div className="flex gap-4">
-          <Input placeholder="Search...." />
+          <Input
+            placeholder="Search...."
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <Button variant="outline" className="border-gray-200">
             <ListFilter className="mr-2" /> Filter
           </Button>
@@ -136,7 +144,7 @@ export default function Home() {
       {data && data.length > 0 && (
         <React.Fragment>
           <UserList
-            users={data}
+            users={filteredUsers}
             openDeleteUserModal={openDeleteUserModal}
             editUser={editUser}
           />

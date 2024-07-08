@@ -62,7 +62,7 @@ export default function Sidebar({ isSidebarOpen }: SidebarProps) {
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}
     >
-      <nav className="border flex flex-col rounded-md h-[calc(100%-100px)] bg-white">
+      <nav className="border flex mt-3 flex-col rounded-md h-[calc(100%-100px)] bg-white">
         <div className="p-4">
           <p className="font-semibold text-black">Settings</p>
         </div>
