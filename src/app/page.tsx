@@ -116,6 +116,7 @@ export default function Home() {
         <div className="flex gap-4">
           <Input
             placeholder="Search...."
+            className="h-10"
             onChange={(e) => setSearch(e.target.value)}
           />
           <Button variant="outline" className="border-gray-200">
