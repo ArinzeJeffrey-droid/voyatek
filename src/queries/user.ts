@@ -1,7 +1,7 @@
 import { User } from "@/__types__/user";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
-const API_BASE_URL = "https://ca95fa15d61a25b81641.free.beeceptor.com";
+const API_BASE_URL = "https://ca149fbd60e82548cdac.free.beeceptor.com";
 
 export const useUsers = () => {
   return useQuery({
